@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+
+{% block heading %}
+  Login
+{% endblock %}
+
+
+{% block body %}
+
+  {% if unsuccessful==True %}
+    <div class="alert alert-danger" role="alert">
+      The username or password you provided is not correct.
+    </div>
+  {% endif %}
+
+  <p>Please enter your account's username and password to log in.</p>
+
+  <div id="login">
+
+    <form action="{{ url_for('logedin') }}" method="post">
+
+      <input type="text" name="username" placeholder="Username">
+
+      <input type="password" name="password" placeholder="Password">
+
+      <button>Log In</button>
+
+    </form>
+
+  </div>
+
+{% endblock %}

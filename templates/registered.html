@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+
+
+{% block heading %}
+
+  Registered
+
+{% endblock %}
+
+
+{% block body %}
+
+  <p>You have been successfully registered.</p>
+
+  <div>
+    <a href="{{ url_for('index') }}">Return to Home</a>
+  </div>
+
+{% endblock %}
