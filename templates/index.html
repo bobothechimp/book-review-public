@@ -13,6 +13,17 @@
 
 </div>
 
+
+{% if logedin=='True' %}
+
+<div id="accountLinks">
+
+  <p>You are currently logged in. Click <a href="logout" class="link">here</a> to log out.</p>
+
+</div>
+
+{% else %}
+
 <div id="accountLinks">
 
   <p>Don't have an account? Sign up <a href="signup" class="link">here</a>.</p>
@@ -21,10 +32,12 @@
 
 </div>
 
+{% endif %}
+
 <div id="catalogLink">
 
   <p>Check out our catalog full of thousands of books!</p>
-  <div class="link"><a href="catalog">Catalog</a><div>
+  <p><a href="catalog" class="link">Catalog</a></p>
 
 </div>
 {% endblock %}
