@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+
+{% block heading %}
+  Catalog
+{% endblock %}
+
+
+{% block body %}
+
+<div class="title">
+
+  <h3>Here is our catalog of books: complete with 5000 different titles!</h3>
+
+</div>
+
+<p>Don't want to scroll through the whole list to search for the book you want? Use our search bar:</p>
+
+<form class="searchbar" action="{{ url_for('search') }}" method="post">
+
+  <input type="text" name="search" placeholder="Title">
+
+  <button>Search</button>
+
+</form>
+
+{% for book in books %}
+  <div class="list-group">
+    <a href="catalog/book/{{ book.isbn }}" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h1 class="mb-1">{{ book.title }}</h1>
+        <small>{{ book.year }}</small>
+      </div>
+      <p class="mb-1">{{ book.author }}</p>
+      <small>{{ book.isbn }}</small>
+    </a>
+  </div>
+{% endfor %}
+
+
+{% endblock %}

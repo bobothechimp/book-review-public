@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+
+{% block heading %}
+  {{ book.title }}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="desc">
+
+  <h3>Written by {{ book.author }}</h3>
+  <h5>Published in {{ book.year }}</h5>
+  <h5>ISBN: {{ book.isbn }}</h5>
+</div>
+
+
+<div class="ratings">
+  <p>Number of Reviews: {{ info["work_ratings_count"] }}</p>
+  <p>Average rating: {{ info["average_rating"] }} out of 5</p>
+</div>
+
+{% if session["currentUserID"]==None %}
+  <p>Please log in to post a review of this book.</p>
+{% elif canPost=='False' %}
+  <p>You have already posted a review for this book.</p>
+{% else %}
+
+<div class="reviewSubmission" style="padding: 100px">
+
+  <p>Leave a review:</p>
+
+
+  <div class="col-lg-6 col-lg-offset-3">
+
+    <form action="{{book.isbn}}/post" method="post">
+
+      <div class="form-group">
+
+        <input class="form-control" aria-label="With textarea" name="review"></input>
+
+      </div>
+
+      <button class="btn btn-default" type="submit" id="button-addon2">Post Review</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+{% endif %}
+
+<div class="reviews">
+
+  <ul class="list-group">
+    {% for review in reviews %}
+      <li class="list-group-item">
+          <p>{{ review.poster }} says: {{ review.review_text}}</p>
+        </li>
+      {% endfor %}
+    </ul>
+
+</div>
+
+
+
+{% endblock %}
